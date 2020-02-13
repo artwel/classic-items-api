@@ -21,7 +21,7 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/Items'
+              $ref: '#/components/schemas/Item'
   schemas:
     Item:
       type: object
