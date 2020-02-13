@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: WoW Classic Item API
+paths:
+  /items:
+    get:
+      summary: returns a list of items by given filter
+      operationId: findItems
+      tags:
+        - items
+      responses:
+        200:
+          $ref: '#/components/responses/Items'
+components:
+  responses:
+    Items:
+      description: a list of items
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Items'
+  schemas:
+    Item:
+      type: object
+      properties:
+        slot:
+          type: string
+        name:
+          type: string
+        wowHeadId:
+          type: number
+          format: int32
+    Source:
+      type: object
+      properties:
+        dungeon:
+          type: string
+        boss:
+          type: string
+        wowHeadId:
+          type: number
+          format: int32
