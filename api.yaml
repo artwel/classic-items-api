@@ -12,6 +12,10 @@ paths:
       operationId: findItems
       tags:
         - items
+      parameters:
+        - $ref: '#/components/parameters/OptionalOwn'
+          required: false
+        - $ref: '#/components/parameters/Slots'
       responses:
         200:
           $ref: '#/components/responses/Items'
@@ -42,6 +46,19 @@ components:
       schema:
         type: boolean
       required: true
+    OptionalOwn:
+      name: own
+      in: query
+      schema:
+        type: boolean
+      required: false
+    Slots:
+      name: slots
+      in: query
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/Slots'
   responses:
     OK:
       description: standard ok message
@@ -54,6 +71,9 @@ components:
             items:
               $ref: '#/components/schemas/Item'
   schemas:
+    Slots:
+      type: string
+      enum: [HEAD, OFFHAND, WRIST, SHOULDERS]
     Item:
       type: object
       properties:
@@ -61,7 +81,7 @@ components:
           type: integer
           format: int32
         slot:
-          type: string
+          $ref: '#/components/schemas/Slots'
         name:
           type: string
         wowHeadId:
