@@ -57,6 +57,9 @@ components:
     Item:
       type: object
       properties:
+        id:
+          type: integer
+          format: int32
         slot:
           type: string
         name:
@@ -64,6 +67,8 @@ components:
         wowHeadId:
           type: integer
           format: int32
+        own:
+          type: boolean
     Source:
       type: object
       properties:
