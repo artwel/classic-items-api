@@ -2,6 +2,9 @@ openapi: 3.0.0
 info:
   version: 0.0.1
   title: WoW Classic Item API
+servers:
+  - url: http://localhost:8080
+    description: Development Machine
 paths:
   /items:
     get:
@@ -12,8 +15,36 @@ paths:
       responses:
         200:
           $ref: '#/components/responses/Items'
+  /items/own:
+    get:
+      summary: updates the own state of the item
+      operationId: setOwn
+      tags:
+        - items
+      parameters:
+        - $ref: '#/components/parameters/Id'
+        - $ref: '#/components/parameters/Own'
+      responses:
+        201:
+          description: 'updated'
 components:
+  parameters:
+    Id:
+      name: id
+      in: query
+      schema:
+        type: integer
+        format: int64
+      required: true
+    Own:
+      name: own
+      in: query
+      schema:
+        type: boolean
+      required: true
   responses:
+    OK:
+      description: standard ok message
     Items:
       description: a list of items
       content:
@@ -31,7 +62,7 @@ components:
         name:
           type: string
         wowHeadId:
-          type: number
+          type: integer
           format: int32
     Source:
       type: object
@@ -41,5 +72,5 @@ components:
         boss:
           type: string
         wowHeadId:
-          type: number
+          type: integer
           format: int32
