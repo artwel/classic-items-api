@@ -73,7 +73,22 @@ components:
   schemas:
     Slots:
       type: string
-      enum: [HEAD, OFFHAND, WRIST, SHOULDERS]
+      enum:
+        - HEAD
+        - NECK
+        - SHOULDERS
+        - BACK
+        - CHEST
+        - WRIST
+        - LEGS
+        - HAND
+        - WAIST
+        - FEET
+        - RING
+        - TRINKET
+        - MAINHAND
+        - OFFHAND
+        - WARD]
     Item:
       type: object
       properties:
@@ -87,14 +102,18 @@ components:
         wowHeadId:
           type: integer
           format: int32
+        source:
+          $ref: '#/components/schemas/Source'
         own:
           type: boolean
     Source:
       type: object
       properties:
-        dungeon:
+        type:
           type: string
-        boss:
+        location:
+          type: string
+        target:
           type: string
         wowHeadId:
           type: integer
