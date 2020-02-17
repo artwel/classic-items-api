@@ -88,7 +88,7 @@ components:
         - TRINKET
         - MAINHAND
         - OFFHAND
-        - WARD]
+        - WARD
     Item:
       type: object
       properties:
